@@ -5,16 +5,28 @@
 </head>
 
 <body>
-  <hello-world greet="Hoodie"></hello-world>
+  <hello-world greet="Hoodie" if={showHoodie}></hello-world>
   <hello-world greet="Titay"></hello-world>
   <hello-world greet="Hyesoo"></hello-world>
   <hello-world></hello-world>
+  <contact-list></contact-list>
 
-  <script src="app.tag" type="riot/tag"></script>
   <script src="bower_components/riot/riot.min.js"></script>
   <script src="tags/hello-world.js"></script>
+  <script src="tags/contact.js"></script>
   <script>
+  this.showHoodie = false
   riot.mount('hello-world', { greet:'Joe' })
+  riot.mount('contact-list')
+  riot.route(function(collection, id, action) {
+    console.log('edit collection id action',collection,id,action)
+  })
+
+  // matches to just `/fruit`
+  riot.route('/fruit', function(name) {
+    console.log('The list of fruits')
+  })
+  riot.route.start(true)
   </script>
 </body>
 </html>
