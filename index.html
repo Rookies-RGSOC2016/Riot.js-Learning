@@ -5,19 +5,17 @@
 </head>
 
 <body>
-  <hello-world greet="Hoodie" if={showHoodie}></hello-world>
-  <hello-world greet="Titay"></hello-world>
-  <hello-world greet="Hyesoo"></hello-world>
-  <hello-world></hello-world>
-  <contact-list></contact-list>
+  <app></app>
 
-  <script src="bower_components/riot/riot.min.js"></script>
-  <script src="tags/hello-world.js"></script>
-  <script src="tags/contact.js"></script>
+  <script type="riot/tag" src="/tags/app.tag"></script>
+  <script type="riot/tag" src="/tags/contact-list.tag"></script>
+  <script type="riot/tag" src="/tags/hello-world.tag"></script>
+
+  <script src="bower_components/riot/riot+compiler.min.js"></script>
   <script>
-  this.showHoodie = false
-  riot.mount('hello-world', { greet:'Joe' })
-  riot.mount('contact-list')
+  riot.mount('app')
+
+  // routes
   riot.route(function(collection, id, action) {
     console.log('edit collection id action',collection,id,action)
   })
