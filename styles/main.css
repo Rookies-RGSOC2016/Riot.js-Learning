@@ -1,0 +1,120 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* show / hide sections */
+section {
+  display: none;
+}
+[data-state="dashboard"] #apps-container,
+[data-state="new-app"] #create-app-container,
+[data-state="edit-app"] #edit-app-container,
+[data-state="app-detail"] #detail-app-container {
+  display: block;
+}
+
+/* show / hide main-button */
+#start-button, #stop-button {
+  display: none;
+}
+[data-state="started"] #stop-button,
+[data-state="stopped"] #start-button{
+  display: block;
+}
+
+#link-details{
+  display: none;
+}
+[data-state="started"] #link-details{
+  display: block;
+}
+
+#stop-button{
+ margin-bottom: 10px;
+}
+
+#delete-button{
+ margin-bottom: 10px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 19px;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+#app-list {
+  margin-top: 20px;
+}
+#app-list li {
+  cursor: pointer;
+}
+#app-list li:hover {
+  background: #eee;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+
+  /* Remove the padding we set earlier */
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* Custome the main style */
+
+.container-fluid {
+  padding-right: 0;
+}
+
+img {
+  margin-top: -.4em;
+}
+
+.main-nav {
+  margin: 20px -15px;
+}
+
+.main-links {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.list-group-item {
+  padding-left: 20px;
+}
+
+.content-left {
+  border-right: 1px solid #333;
+  height: 100%;
+  padding-right: 30px;
+}
+#create-app-container{
+  display: none;
+}
+#detail-app-container{
+  display: none;
+}
+
+/*custom 2*/
+
+.welcome{
+  font-size: 1.5em;
+  position: relative;
+  top: 5px;
+}
+
+.btn-size-move{
+  margin-right: 5px;
+  margin-top: 7px;
+}

@@ -1,55 +1,56 @@
 <app>
-  <nav><a each={ data } href="#{ id }"> { title }</a></nav>
+  <div class="container">
+    <div class="row main-nav">
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <p class="text-center welcome">Welcome to Hoodie</p>
+      </div>
+      <div class="col-sm-4">
+      </div>
+    </div>
 
-  <p>
-    <a href="#/">Home</a> |
-    <a href="#/1">create app</a> |
-    <a href="#/2">app detail</a>
-  </p>
+    <apps-container></apps-container>
+    <create-app-container></create-app-container>
+    <detail-app-container></detail-app-container>
+    <edit-app-container></edit-app-container>
 
-  <article>
-    <h1>{ page.title }</h1>
-    <p>{ page.body }</p>
-  </article>
-
-  <button onclick={showHoodieGreet} if={!showHoodie}>show Hoodie greet</button>
-  <button onclick={hideHoodieGreet} if={showHoodie}>hide Hoodie greet</button>
-
-  <p>{showHoodie}</p>
-
-  <hello-world greet="Hoodie" if={showHoodie}></hello-world>
-  <hello-world greet="Titay"></hello-world>
-  <hello-world greet="Hyesoo"></hello-world>
-  <hello-world greet="Joe"></hello-world>
-  <contact-list></contact-list>
-
+    <div class="container-fluid">
+      <div class="footer">
+        <p class="text-center">Hoodie with &nbsp; <span class="glyphicon glyphicon-heart"></span></p>
+      </div>
+    </div>
+  </div>
   <script>
-  var self = this
-  this.data = [
-    {id: "", title: "appsContainer", body: "click the dashbord link above."},
-    {id: "1", title: "createAppContainer", body: "click the new app link above."},
-    {id: "2", title: "detailAppContainer", body: "click the apps detail link above."}
-  ]
+  // STORE REFERENCES TO HTML ELEMENTS
+  var $body = $(document.body)
 
-  this.page = this.data[0]
+  // INIT APP
+  $(document).ready(handleRoute)
+  $(window).on('hashchange', handleRoute)
 
-  riot.route(function(id){
-    self.page = self.data.filter(function(r){ return r.id == id})[0] || {
-      title: 'Not found',
-      body: 'Specified is not found'
-    }
-    self.update()
-  })
-  riot.route.start(true)
-
-  this.showHoodie = false
-
-  showHoodieGreet () {
-    this.showHoodie = true
+  //HELPER METHODS
+  function setRoute (path) {
+    location.hash = '#' + path
   }
-  hideHoodieGreet () {
-    this.showHoodie = false
+
+  function handleRoute () {
+    var path = location.hash.substr(1)
+
+    if(path === ''){
+      console.log('route: dashboard')
+      renderAppList()
+      return
+    }
+
+    if(path === 'new'){
+      console.log('route: new app form')
+      renderNewAppForm()
+      return
+    }
+
+    console.log('route: app detail (id: ${path}')
+    renderAppDetail(path)
   }
   </script>
-</script>
 </app>
