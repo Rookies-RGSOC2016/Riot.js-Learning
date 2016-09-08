@@ -37,7 +37,6 @@
 
   <script>
   // STORE REFERENCES TO HTML ELEMENTS
-  var $updateAppForm = $('#form-update-app')
   var $goBackButton = $('#go-back-btn')
   var $startAppButton = $('#start-button')
   var $stopAppButton = $('#stop-button')
