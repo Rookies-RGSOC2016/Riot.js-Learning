@@ -1,11 +1,12 @@
-<apps-container>
+<apps-container if={show}>
   <div class="well">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <button id="new-app-btn" type="button" class="btn btn-lg btn-block btn-primary">
+        <!--for routing : replace the button with a link-->
+        <link id="new-app-btn" type="button" class="btn btn-lg btn-block btn-primary">
           New App
           <i class="glyphicon glyphicon-plus-sign pull-right"></i>
-        </button>
+        </link>
 
         <ul class="list-group" id="app-list">
           <!-- New App menu-->
@@ -18,6 +19,7 @@
   /* global $, applist, location*/
 
   // STORE REFERENCES TO HTML ELEMENTS
+  var $body = $(document.body)
   var $showNewAppFormButton = $('new-app-btn')
   var $appList = $('#app-list')
 
@@ -35,7 +37,7 @@
   function renderAppList () {
     $body.attr('data-state', 'dashboard')
     $appList.empty()
-    appList.findAll()
+    $appList.findAll()
 
     .then(function (apps){
       apps.forEach(function (app){
@@ -48,5 +50,25 @@
       })
     })
   }
+  //routing
+  var self = this
+  var hoodieRoute = riot.route.create()
+
+  hoodieRoute(function(){
+    console.log('route: dashboard')
+    self.show = false
+    self.update()
+    renderAppList()
+    return
+  })
+
+  hoodieRoute('/',function(){
+    console.log('route: dashboard')
+    self.show = true
+    self.update()
+    renderAppList()
+    return
+  })
+
   </script>
 </apps-container>

@@ -1,4 +1,4 @@
-<edit-app-container>
+<edit-app-container if={show}>
   <form id="form-update-app">
     <p class="control-group">
       <label class="control-label" for="rename-app">New App Name:</label>
@@ -10,7 +10,9 @@
     </p>
   </form>
   <script>
+
   // STORE REFERENCES TO HTML ELEMENTS
+  var $body = $(document.body)
   var $editButton = $('#edit-button')
   var $updateAppForm = $('#form-update-app')
 
@@ -47,5 +49,18 @@
     })
     $('#rename-app').val('')
   }
+
+  //routing
+  var self = this
+  var hoodieRoute = riot.route.create()
+  
+  hoodieRoute('/apps/*/edit',function(id){
+    self.id = id
+    console.log('route: app detail (id: ${self.id}')
+    self.detailAppShow = true
+    renderAppDetail(id)
+    return
+  })
+
   </script>
 </edit-app-container>

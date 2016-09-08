@@ -1,4 +1,4 @@
-<create-app-container>
+<create-app-container if={show}>
   <div class="well">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -20,6 +20,7 @@
 
   <script>
   // STORE REFERENCES TO HTML ELEMENTS
+  var $body = $(document.body)
   var $newAppForm = $('form-new-app')
   var $cancelNewAppFormButton = $('#cancel-create')
 
@@ -52,5 +53,16 @@
     $body.attr('data-state', 'new-app')
     $('#empty-text').val('')
   }
+
+  //routing
+  var self = this
+  var hoodieRoute = riot.route.create()
+  
+  hoodieRoute('/new',function(){
+    console.log('route: new app form')
+    self.createAppShow = true
+    renderNewAppForm()
+    return
+  })
   </script>
 </create-app-container>

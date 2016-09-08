@@ -1,4 +1,4 @@
-<detail-app-container>
+<detail-app-container if={show}>
   <div class="row main-nav">
     <div class="col-sm-4">
       <button type="button" id="go-back-btn" class="btn btn-default pull-left">
@@ -37,6 +37,7 @@
 
   <script>
   // STORE REFERENCES TO HTML ELEMENTS
+  var $body = $(document.body)
   var $goBackButton = $('#go-back-btn')
   var $startAppButton = $('#start-button')
   var $stopAppButton = $('#stop-button')
@@ -93,5 +94,17 @@
     })
     $('#rename-app').val('')
   }
+
+  //routing
+  var self = this
+  var hoodieRoute = riot.route.create()
+  
+  hoodieRoute('/apps/*',function(id){
+    self.id = id
+    console.log('route: app detail (id: ${self.id}')
+    self.detailAppShow = true
+    renderAppDetail(id)
+    return
+  })
   </script>
 </detail-app-container>
